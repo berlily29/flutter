@@ -7,11 +7,13 @@ import 'package:shortee/screens/search-screen.dart';
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
 
+
   @override
   State<MainScreen> createState() => _HomeState();
 }
 
 class _HomeState extends State<MainScreen> {
+
   var wigetList = [
     HomeScreen(),
     BookmarkScreen(),

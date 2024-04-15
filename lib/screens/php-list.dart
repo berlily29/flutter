@@ -1,42 +1,44 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:shortee/data/data.dart';
 
-class BookmarkScreen extends StatelessWidget {
-  const BookmarkScreen({Key? key}) : super(key: key);
+class PhpListScreen extends StatelessWidget {
+  const PhpListScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 10),
+    final List<Map<String, dynamic>> phpData =
+        dictionaryData.where((data) => data['category'] == 'PHP').toList();
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Home'),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: Text(
-                'Bookmarks',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Color(0xFF1d2038),
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                ),
+            Text(
+              'PHP List',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20.0,
               ),
             ),
-            const SizedBox(height: 5),
+            SizedBox(height: 10.0),
+            Text(
+              'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut ultricies nulla. Integer ut nisi ut sem mattis lacinia.',
+              style: TextStyle(
+                fontSize: 16.0,
+              ),
+            ),
+            SizedBox(height: 10.0),
             Expanded(
               child: ListView.builder(
-                itemCount: dictionaryData
-                    .where((data) => data['isBookmark'] == true)
-                    .length,
-                itemBuilder: (context, int i) {
-                  final bookmarkedData = dictionaryData
-                      .where((data) => data['isBookmark'] == true)
-                      .toList();
-                  final String command = bookmarkedData[i]['command'] as String;
-                  final String code = bookmarkedData[i]['code'] as String;
+                itemCount: phpData.length,
+                itemBuilder: (context, index) {
+                  final String command = phpData[index]['command'] as String;
+                  final String code = phpData[index]['code'] as String;
 
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 16.0),
